@@ -1,0 +1,129 @@
+﻿@model ProcCore.Business.Logic.q_Product_Category_L1
+@using ProcCore.Business.Logic.TablesDescription
+@using ProcCore.JqueryHelp
+@using ProcCore.JqueryHelp.JQGridScript
+@using ProcCore.JqueryHelp.CustomButton;
+
+@section IncludeScript{
+    @Html.Partial("Manage/includeScript_Comm")
+    @Html.Partial("Manage/includeScript_Grid")
+}
+@section menu{
+    @Html.Raw(Session["MenuHtmlString"].ToString())
+}
+@{
+
+    Product_Category_L2 Tabs = new Product_Category_L2();
+
+    //定義Grid需格式化的欄位
+    FormatterColumnScript f_col_id = new FormatterColumnScript();
+    f_col_id.FunctionName = CommWebSetup.funNameMasterDataFormatterID;
+    f_col_id.FunctionString = Html.GridIDColumnCommScriptContext(CommWebSetup.MasterGridID, Url.Action(CommWebSetup.acNameEditMasterDataByID));
+
+    jqGrid jdSub = Html.jqSubGrid(
+                                Url.Action("ajax_MasterSubGridData"),
+                                Url.Action(CommWebSetup.acNameSubDataDelete),
+                                Url.Action(CommWebSetup.acNameSubDataUpdateData), null, null,
+                                new MakeColumnModule() { CN = Html.FLang(Tabs.id.M), CM = { name = Tabs.id.M, width = "32px", editable = true, hidden = true, hidedlg = true } },
+                                new MakeColumnModule() { CN = Html.FLang(Tabs.product_category_l1_id.M), CM = { name = Tabs.product_category_l1_id.M, width = "60px", editable = true, hidden = true, hidedlg = true } },
+                                new MakeColumnModule() { CN = Html.FLang(Tabs.category_l2_name.M), CM = { name = Tabs.category_l2_name.M, width = "200px", editable = true } },
+                                new MakeColumnModule() { CN = Html.FLang(Tabs.sort.M), CM = { name = Tabs.sort.M, width = "170px", editable = true, editrules = new jqGrid.colObject.editRules() { required=true } } }
+                                );
+
+    jdSub.GridModule.postData.Add("s_product_category_l1_id", "id");
+    jdSub.GridModule.multiselect = false;
+
+    jdSub.NavGridModule.navOption.del = false;
+    jdSub.NavGridModule.navOption.add = false;
+    jdSub.NavGridModule.navOption.edit = true;
+
+    jdSub.ToScriptHandle();
+
+    jdSub.NavGridModule.Add.afterShowForm = new funcMethodModule();
+    jdSub.NavGridModule.Add.afterShowForm.funcString = "$.ajax_DetailFormShowAfterHandle(id);";
+    jdSub.NavGridModule.Add.afterShowForm.MakeStyle = funcMethodModule.funcMakeStyle.funcConext;
+
+    jdSub.NavGridModule.Add.closeAfterAdd = true;
+    jdSub.NavGridModule.Add.closeAfterEdit = true;
+
+    Product_Category_L1 Tab = new Product_Category_L1();
+
+    jqGrid gridobj = Html.jqGrid_Edit(
+    CommWebSetup.MasterGridID,
+    (String)ViewBag.Caption,
+    ViewData["Page"].ToString(),
+    Url.Action(CommWebSetup.acNameMasterDataGridUrl),
+    Url.Action(CommWebSetup.acNameMasterDataDelete),
+    Url.Action(CommWebSetup.acNameMasterDataUpdateData),
+    CommWebSetup.MasterGridDefHight, jdSub,
+    new MakeColumnModule() { CN = Tab.id.M, CM = { name = Tab.id.M, key = true, width = "32px", editable = true, hidden = true, hidedlg = true } },
+    new MakeColumnModule() { CN = Html.FLang(Tab.category_l1_name.M), CM = { name = Tab.category_l1_name.M, width = "90px", editable = true, editrules = new jqGrid.colObject.editRules() { required = true } } },
+    new MakeColumnModule() { CN = Html.FLang(Tab.sort.M), CM = { name = Tab.sort.M, width = "32px", editable = true, editrules = new jqGrid.colObject.editRules() { integer = true, required = true } } }
+    );
+
+    gridobj.NavGridModule.navOption.add = false;
+    gridobj.NavGridModule.navOption.del = false;
+    gridobj.GridModule.multiselect = false;
+    gridobj.GridModule.multiboxonly = false;
+
+    gridobj.NavGridModule.Add.afterShowForm = new funcMethodModule();
+    gridobj.NavGridModule.Add.afterShowForm.funcString = "$.ajax_MasterFormShowAfterHandle();";
+    gridobj.NavGridModule.Add.afterShowForm.MakeStyle = funcMethodModule.funcMakeStyle.funcConext;
+
+    gridobj.NavGridModule.Add.closeAfterAdd = true;
+    gridobj.NavGridModule.Add.closeAfterEdit = true;
+
+    gridobj.GridIdWorkTosubGridRowExpanded = false;
+    gridobj.GridModule.subGrid = true;
+    
+    gridobj.ToScriptHandle();
+}
+@Html.Raw(gridobj.jqGridHtml)
+@Html.OpenDialogPlugin(ViewData["DialogTitle"].ToString(), ViewData["DialogMessage"].ToString())
+@{
+    jqSelector jqId_btn_sch = new jqSelector() { IdName = CommWebSetup.eleNameSearchButton };
+    //
+    jqButton btn_sch_fmwk = new jqButton(jqId_btn_sch);
+    btn_sch_fmwk.options.icons.primary = FrameworkIcons.ui_icon_search;
+    //
+    jqElementEvent btn_sch_evt_clk = new jqElementEvent(jqId_btn_sch);
+    btn_sch_evt_clk.events.Add(new jqElementEvent.jqEvents()
+    {
+        htmlElementEvent = HtmlObjectEvent.click,
+        funcString = @"
+$('#" + CommWebSetup.MasterGridID + @"').setGridParam({postData: null});
+$('#" + CommWebSetup.MasterGridID + @"').trigger('reloadGrid');
+"
+    });
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        @Html.Raw(gridobj.jqGridScript)
+        @Html.Raw(btn_sch_fmwk.ToScriptString())
+        @Html.Raw(btn_sch_evt_clk.ToScriptString())
+    });
+    (function ($) {
+        @Html.Raw(gridobj.jqFormatterScript)
+    })(jQuery);
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () { });
+    (function ($) {
+
+        $.ajax_MasterFormShowAfterHandle = function () {
+            $.post('ajax_id_Category_L1').done(function (data, textStatus, jqXHR) {
+                var jsonobj = jQuery.parseJSON(data);
+                $('#id').val(jsonobj);
+            })
+        }
+
+        $.ajax_DetailFormShowAfterHandle = function (id) {
+            $('#product_category_l1_id').val(id);
+            $.post('ajax_id_Category_L2').done(function (data, textStatus, jqXHR) {
+                var jsonobj = jQuery.parseJSON(data);
+                $('#id').val(jsonobj);
+            })
+        }
+    })(jQuery);
+</script>

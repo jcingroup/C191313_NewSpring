@@ -1,0 +1,150 @@
+﻿@model ProcCore.Business.Logic._Parm
+@using ProcCore;
+@using ProcCore.WebCore;
+@using ProcCore.JqueryHelp;
+@using ProcCore.JqueryHelp.DateTimePickerHelp;
+@using ProcCore.JqueryHelp.FormvValidate;
+@using ProcCore.JqueryHelp.CustomButton;
+@section IncludeScript{
+    @Html.Partial("Manage/includeScript_Comm")
+    @Html.Partial("Manage/includeScript_FineUpload")
+    <script type="text/javascript" src="~/_Code/ckeditor_4.1.2_full/ckeditor.js"></script>
+    <script type="text/javascript" src="~/_Code/ckfinder_aspnet_2.3.1/ckfinder.js"></script>
+}
+@section menu{
+    @Html.Raw(Session["MenuHtmlString"].ToString())
+}
+@{
+    FormValidateSetup val_frm_a = new FormValidateSetup(new jqSelector() { IdName = CommWebSetup.eleNameMasterDataForm });
+    //val_frm_a.Add(Html.FieldsRuleSetup(x => x., new FieldRule() { required = true }, null, null));
+    //val_frm_a.Add(Html.FieldsRuleSetup(x => x.set_date, new FieldRule() { required = true, date = true }, null, null));
+
+    jqSelector jq_for_btn_rtn = new jqSelector() { IdName = "btn_return_list" };
+    jqSelector jq_for_btn_sbm = new jqSelector() { IdName = "btn_submit" };
+    jqSelector jq_for_btn_opfle_fmwk = new jqSelector() { IdName = "btn_opdlg_fles" };
+    jqSelector jq_for_btn_opimg_fmwk = new jqSelector() { IdName = "btn_opdlg_imgs" };
+
+    funcMethodModule func = Html.CommSetFormOnSuccesss();
+}
+@using (Ajax.BeginForm(null, null, new AjaxOptions() { Url = Url.Action(CommWebSetup.acNameMasterDataUpdateData), HttpMethod = "post", OnSuccess = func.funcName }, new { id = CommWebSetup.eleNameMasterDataForm }))
+{
+    <input type="hidden" id="returnQueryString" name="returnQueryString" value="@Html.Raw(ViewBag.QueryString)" />
+    
+    <div class="@ViewBag.css_Edit_Master_CaptionCss">
+        @ViewBag.Caption
+    </div>
+    <div class="@ViewBag.css_EditFormNoteCss">
+        @Resources.Res.Info_StarMustEdit
+    </div>
+    
+    <fieldset>
+        <legend class="@ViewBag.css_Edit_Subtitle_CaptionCss">@Html.FieldLang(x => x.產品價格方式)</legend>
+        <table>
+
+            <tr>
+                <th class="@ViewBag.css_EditFormFieldsNameCss">
+                    <label class="@ViewBag.css_EditFormFieldsNameCss">@Html.Lang("Style1")</label></th>
+                <td>@Html.RadioButtonFor(x => x.產品價格方式, 0) 不優惠 (一律使用會員價)
+                </td>
+            </tr>
+            <tr>
+                <th class="@ViewBag.css_EditFormFieldsNameCss">
+                    <label class="@ViewBag.css_EditFormFieldsNameCss">@Html.Lang("Style2")</label></th>
+                <td>
+                    @Html.RadioButtonFor(x => x.產品價格方式, 1) 使用優惠價(產品需各別設定優惠價，當無設定優惠價時則使用會員價)
+                </td>
+            </tr>
+            <tr>
+                <th class="@ViewBag.css_EditFormFieldsNameCss">
+                    <label class="@ViewBag.css_EditFormFieldsNameCss">@Html.Lang("Style3")</label></th>
+                <td>
+                    @Html.RadioButtonFor(x => x.產品價格方式, 2) 折扣設定 @Html.TextBoxFor(x => x.產品價格折扣,"{0:0.00}") 折。以會員價計算折扣 (85折請輸入0.85、95折請輸入0.95)
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend class="@ViewBag.css_Edit_Subtitle_CaptionCss">@Html.FieldLang(x => x.訂單運費設定)</legend>
+        <table>
+
+            <tr>
+                <th class="@ViewBag.css_EditFormFieldsNameCss">
+                    <label class="@ViewBag.css_EditFormFieldsNameCss">@Html.Lang("Style1")</label></th>
+                <td>@Html.RadioButtonFor(x => x.訂單運費設定, 0) 一律免運費
+                </td>
+            </tr>
+            <tr>
+                <th class="@ViewBag.css_EditFormFieldsNameCss">
+                    <label class="@ViewBag.css_EditFormFieldsNameCss">@Html.Lang("Style2")</label></th>
+                <td>
+                    @Html.RadioButtonFor(x => x.訂單運費設定, 1) 會員下訂單，當訂單金額少於 @Resources.Res.CurrencySign @Html.TextBoxFor(x => x.訂單運費_少於,"{0:0.00}") 元時須付運費 @Resources.Res.CurrencySign @Html.TextBoxFor(x => x.需付運費,"{0:0.00}") 元
+                </td>
+            </tr>
+             
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend class="@ViewBag.css_Edit_Subtitle_CaptionCss">@Html.Lang("PayStyle")</legend>
+        <table>
+
+            <tr>
+                <th class="@ViewBag.css_EditFormFieldsNameCss">
+                    <label class="@ViewBag.css_EditFormFieldsNameCss">@Html.Lang("Style1")</label></th>
+                <td>當付款方式選擇『ATM轉帳』時，銀行帳號資料為：<br />
+                    戶名：@Html.TextBoxFor(x=>x.ATM戶名)<br />
+                    銀行：@Html.TextBoxFor(x=>x.ATM銀行)<br />
+                    代碼：@Html.TextBoxFor(x=>x.ATM代碼)<br />
+                    帳號：@Html.TextBoxFor(x=>x.轉入帳號)
+                </td>
+            </tr>
+            <tr>
+                <th class="@ViewBag.css_EditFormFieldsNameCss">
+                    <label class="@ViewBag.css_EditFormFieldsNameCss">@Html.Lang("Style2")</label></th>
+                <td>
+                   當付款方式選擇『貨到付款』時，須加 @Resources.Res.CurrencySign @Html.TextBoxFor(x=>x.需付運費,"{0:0.00}") 元手續費
+                </td>
+            </tr>
+             
+        </table>
+    </fieldset>
+        
+    <div class="@ViewBag.css_EditFormNavigationFunctionCss">
+        <button type="submit" id="@jq_for_btn_sbm.IdName">
+            @Resources.Res.Button_Sure_Modify
+        </button>
+        <button type="button" id="@jq_for_btn_rtn.IdName">@Resources.Res.Button_Return</button>
+    </div>
+}
+
+@{
+    //===
+    jqButton btn_sbm_fmwk = new jqButton(new jqSelector() { IdName = jq_for_btn_sbm.IdName });
+    btn_sbm_fmwk.options.icons.primary = FrameworkIcons.ui_icon_check;
+
+    //===
+    jqButton btn_rtn_fmwk = new jqButton(jq_for_btn_rtn);
+    btn_rtn_fmwk.options.icons.primary = FrameworkIcons.ui_icon_arrowreturnthick_1_w;
+
+    jqElementEvent btn_rtn_evt_clk = new jqElementEvent(jq_for_btn_rtn);
+    btn_rtn_evt_clk.events.Add(new jqElementEvent.jqEvents() { htmlElementEvent = HtmlObjectEvent.click, funcString = "document.location.href='" + Url.Action(CommWebSetup.acNameEditFormReturnGridList) + "?' + $('#returnQueryString').val();" });
+    //===
+    jqButton btn_opfle_fmwk = new jqButton(new jqSelector() { IdName = jq_for_btn_opimg_fmwk.IdName });
+    btn_opfle_fmwk.options.icons.primary = FrameworkIcons.ui_icon_arrow_4_diag;
+    //===
+    jqButton btn_opimg_fmwk = new jqButton(new jqSelector() { IdName = jq_for_btn_opfle_fmwk.IdName });
+    btn_opimg_fmwk.options.icons.primary = FrameworkIcons.ui_icon_arrow_4_diag;
+        
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        @Html.Raw(val_frm_a.ToScriptString())
+        @Html.Raw(btn_opfle_fmwk.ToScriptString())
+        @Html.Raw(btn_opimg_fmwk.ToScriptString())
+        @Html.Raw(btn_sbm_fmwk.ToScriptString())
+        @Html.Raw(btn_rtn_fmwk.ToScriptString())
+        @Html.Raw(btn_rtn_evt_clk.ToScriptString())
+        @Html.Raw(func.ToScriptString())
+    });
+    (function ($) {
+    })(jQuery);
+</script>

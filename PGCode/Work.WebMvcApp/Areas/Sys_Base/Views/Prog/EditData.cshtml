@@ -1,0 +1,114 @@
+﻿@model ProcCore.Business.Logic.m_ProgData
+
+@using ProcCore;
+@using ProcCore.Business.Logic;
+@using ProcCore.JqueryHelp;
+@using ProcCore.JqueryHelp.FormvValidate;
+@using ProcCore.JqueryHelp.CustomButton;
+
+@section IncludeScript{
+    @Html.Partial("Manage/includeScript_Comm")}
+
+@section menu{
+    @Html.Raw(Session["MenuHtmlString"].ToString())
+}
+@{
+    FormValidateSetup val_frm_a = new FormValidateSetup(new jqSelector() { IdName = CommWebSetup.eleNameMasterDataForm });
+
+    //以下為欄位規則設定
+    val_frm_a.Add(Html.FieldsRuleSetup(x => x.area, new FieldRule { required = true }, null, null));
+    val_frm_a.Add(Html.FieldsRuleSetup(x => x.controller, new FieldRule { required = true }, null, null));
+    val_frm_a.Add(Html.FieldsRuleSetup(x => x.area, new FieldRule { required = true }, null, null));
+    val_frm_a.Add(Html.FieldsRuleSetup(x => x.power_serial, new FieldRule { required = true }, null, null));
+    //mFormHelper.LastAppenScript += Html.SetCommCKEditor("Context");
+
+    jqSelector jq_for_btn_rtn = new jqSelector() { IdName = "btn_return_list" };
+    jqSelector jq_for_btn_sbm = new jqSelector() { IdName = "btn_submit" };
+
+    funcMethodModule func = Html.CommSetFormOnSuccesss();
+    
+}
+
+@using (Ajax.BeginForm(null, null, new AjaxOptions() { Url = Url.Action(CommWebSetup.acNameMasterDataUpdateData), HttpMethod = "post", OnSuccess = func.funcName }, new { id = CommWebSetup.eleNameMasterDataForm }))
+{
+
+@Html.HiddenFor(x => x.id)
+@Html.HiddenFor(x => x.EditType)
+
+<div class="@ViewBag.css_Edit_Master_CaptionCss">
+    @ViewBag.Caption
+</div>
+<div class="@ViewBag.css_EditFormNoteCss">
+    *為必填欄位
+</div>
+<fieldset>
+    <legend class="@ViewBag.css_Edit_Subtitle_CaptionCss">@Html.Lang("BaseData")</legend>
+    <div>
+        <label class="@ViewBag.css_EditFormFieldsNameCss">@Html.FieldLang(x => x.prog_name)：</label>
+        @Html.TextBoxFor(x => x.prog_name, new { @maxlength = 24, @size = 48 })
+    </div>
+    <div>
+        <label class="@ViewBag.css_EditFormFieldsNameCss">@Html.FieldLang(x => x.sort)：</label>
+        @Html.TextBoxFor(x => x.sort, new { @maxlength = 8, @size = 8 })
+    </div>
+    <div>
+        <label class="@ViewBag.css_EditFormFieldsNameCss">@Html.FieldLang(x => x.area)：</label>
+        @Html.TextBoxFor(x => x.area, new { @maxlength = 24, @size = 48 })
+    </div>
+    <div>
+        <label class="@ViewBag.css_EditFormFieldsNameCss">@Html.FieldLang(x => x.controller)：</label>
+        @Html.TextBoxFor(x => x.controller, new { @maxlength = 24, @size = 48 })
+    </div>
+    <div>
+        <label class="@ViewBag.css_EditFormFieldsNameCss">@Html.FieldLang(x => x.action)：</label>
+        @Html.TextBoxFor(x => x.action, new { @maxlength = 24, @size = 48 })
+    </div>
+    <div>
+        <label class="@ViewBag.css_EditFormFieldsNameCss">@Html.FieldLang(x => x.isfolder)：</label>
+        @Html.RadioButtonFor(x => x.isfolder, true)是 @Html.RadioButtonFor(x => x.isfolder, false)否
+    </div>
+    <div>
+        <label class="@ViewBag.css_EditFormFieldsNameCss">@Html.FieldLang(x => x.ishidden)：</label>
+        @Html.RadioButtonFor(x => x.ishidden, true)是 @Html.RadioButtonFor(x => x.ishidden, false)否
+    </div>
+    <div>
+        <label class="@ViewBag.css_EditFormFieldsNameCss">@Html.FieldLang(x => x.power_serial)：</label>
+        @foreach (Power p in Model.PowerItem.Powers)
+        {
+            <input type="checkbox" id="GetPowerItems" name="GetPowerItems" value="@p.ManagementIntSerial" 
+                @if (p.IsManagement)
+                {
+                    @:checked="checked"
+                    } />@p.name        
+        }
+    </div>
+</fieldset>
+<div class="@ViewBag.css_EditFormNavigationFunctionCss">
+    @Html.FrameworkButton("btn_submit", Model.EditType == EditModeType.Insert ? Resources.Res.Button_Sure_Insert : Resources.Res.Button_Sure_Modify, FrameworkIcons.ui_icon_check)
+    &nbsp;
+    @Html.FrameworkButton("btn_return_list", Resources.Res.Button_Return, FrameworkIcons.ui_icon_arrowreturnthick_1_w)
+    <input type="hidden" id="returnQueryString" name="returnQueryString" value="@Html.Raw(ViewBag.QueryString)" />
+</div>
+}
+
+@{
+    //===
+    jqButton btn_sbm_fmwk = new jqButton(new jqSelector() { IdName = jq_for_btn_sbm.IdName });
+    btn_sbm_fmwk.options.icons.primary = FrameworkIcons.ui_icon_check;
+
+    //===
+    jqButton btn_rtn_fmwk = new jqButton(jq_for_btn_rtn);
+    btn_rtn_fmwk.options.icons.primary = FrameworkIcons.ui_icon_arrowreturnthick_1_w;
+
+    jqElementEvent btn_rtn_evt_clk = new jqElementEvent(jq_for_btn_rtn);
+    btn_rtn_evt_clk.events.Add(new jqElementEvent.jqEvents() { htmlElementEvent = HtmlObjectEvent.click, funcString = "document.location.href='" + Url.Action(CommWebSetup.acNameEditFormReturnGridList) + "?' + $('#returnQueryString').val();" });
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    });
+
+    (function ($) {
+    })(jQuery);
+</script>

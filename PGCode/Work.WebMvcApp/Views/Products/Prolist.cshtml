@@ -1,0 +1,39 @@
+﻿@model DotWeb.WebInfo
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/Content/css/page.css">
+}
+
+<ul class="breadCrumb">
+    <li><a href="~/index">首頁</a></li>
+    <li><a href="~/Products/Prolist">新和春產品系列</a></li> <!--超連結連到排序第1個的分類列表-->
+    <li>@Model.category_l1_name</li>
+    @if (!string.IsNullOrEmpty(Model.category_l2_name))
+    {
+        <li>@Model.category_l2_name</li>
+    }
+
+</ul>
+
+<div id="content">
+
+    <h3>新和春產品系列<span>Product Series</span></h3>
+
+    <h4>@Model.category_l1_name</h4>
+
+    <ol class="pro">
+        @foreach (var md in Model.products)
+        {
+            <li>
+                <a href="~/Products/Product/@md.id">
+                    <img src="@Html.ImgSrc("Sys_Active", "ProdData", md.id, "ListImg", 180)" /><em>@md.product_name</em>
+                </a>
+            </li>
+        }
+    </ol>
+    <a class="goTop" href="#header">Top</a>
+</div>
+<!-- content //-->

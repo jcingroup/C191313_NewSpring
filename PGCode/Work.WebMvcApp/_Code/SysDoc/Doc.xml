@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<document>
+  
+  <file>
+    <sort>1</sort>
+    <name>news.html</name>
+    <memo>最新消息 (包括 新增、修改、刪除)</memo>
+  </file>
+  
+  <file>
+    <sort>2</sort>
+    <name>category.html</name>
+    <memo>產品分類管理 (包括 新增、修改、刪除 主分類及次分類)</memo>
+  </file>
+  
+  <file>
+    <sort>3</sort>
+    <name>product.html</name>
+    <memo>產品資料維護 (包括 新增、修改、刪除)</memo>
+  </file>
+  
+  <file>
+    <sort>4</sort>
+    <name>order.html</name>
+    <memo>訂單維護  (修改每筆訂單的內容)</memo>
+  </file>
+  
+  <file>
+    <sort>5</sort>
+    <name>member.html</name>
+    <memo>會員資料管理 (修改已加入會員的資料)</memo>
+  </file>
+  
+  <file>
+    <sort>6</sort>
+    <name>page.html</name>
+    <memo>網頁編輯 (修改 企業介紹 的內容)</memo>
+  </file>
+
+</document>

@@ -1,0 +1,28 @@
+﻿@{
+  Layout = "~/Views/Shared/Layout.cshtml";
+}
+@model List<ProcCore.Business.Logic.m_QATable>
+@section styles {
+	<link rel="stylesheet" href="~/Content/css/page.css">
+}
+
+<ul class="breadCrumb">
+	<li><a href="~/index">首頁</a></li>
+	<li>Q&A</li>
+</ul>
+
+<div id="content">
+
+	<h3>Q&A<span>Help</span></h3>
+    @{
+    int i =1;
+    foreach(var item in Model){
+    <h4><em>Q@(i)</em>@item.Question</h4>
+	<div class="info">
+		@Html.Raw(item.Answer)
+	</div>
+        i++;
+    }}
+	<a class="goTop" href="#header">Top</a>
+
+</div><!-- content //-->

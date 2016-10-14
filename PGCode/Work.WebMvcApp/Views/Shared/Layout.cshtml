@@ -1,0 +1,157 @@
+﻿@{
+    ViewBag.Title = "新和春本草";
+    ProcCore.Business.Logic.m_Product_Category_L1[] Product_Category_Data = ViewBag.Product_Category_Data;
+}
+<!DOCTYPE html>
+<html>
+<!-- saved from url=(0014)about:internet -->
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title</title>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/scroll.js" type="text/javascript"></script>
+    @RenderSection("styles", false)
+</head>
+
+<body class="@ViewBag.BodyClass">
+
+    <div id="container">
+
+        <div id="header">
+
+            <h1 onclick="location.href='@Url.Action("Index", "Index")'" title="回首頁">新和春本草</h1>
+
+            <div id="banner" class="slider">
+                <ul class="items">
+                    <li>
+                        <img src="~/Content/images/index/banner.jpg">
+                    </li>
+                    <li>
+                        <img src="~/Content/images/index/banner2.jpg">
+                    </li>
+                    <li>
+                        <img src="~/Content/images/index/banner3.jpg">
+                    </li>
+                </ul>
+            </div>
+            <!-- banner //-->
+
+            <ul id="menu">
+                <li><a href="~/Products/Prolist/?id=1&ids=1">新和春產品系列</a></li>
+                <li><a href="~/Month/Month">產後調養 坐月子系列</a></li>
+                <li><a href="~/QA/QA">Q & A</a></li>
+                <li><a href="~/Sell/Sell">全國、跨國購物專區</a></li>
+                <li><a href="~/Custom/Custom">大宗採購 & 客製產品</a></li>
+            </ul>
+
+        </div>
+        <!-- header //-->
+
+        <div id="main">
+
+            <div id="sidebar">
+
+                <dl class="sub-nav2">
+                    @{
+                        int i = 0;
+                    }
+                    @foreach (var md in Product_Category_Data)
+                    {
+                        if (md.Category_L2.Length > 0)
+                        {
+                            <dt><a data-toggle="collapse" href="#collapse@(i)">@md.category_l1_name</a></dt>
+                            if (md.id == (int)ViewBag.Product_Category_Now)
+                            {
+                                <dd id="collapse@(i)" class="collapse in">
+                                    @foreach (var m in md.Category_L2)
+                                    {
+                                        <a href="~/Products/Prolist/?id=@md.id&ids=@m.id">@m.category_l2_name</a>
+                                    }
+                                </dd>
+                            }
+                            else
+                            {
+                                <dd id="collapse@(i)" class="collapse">
+                                    @foreach (var m in md.Category_L2)
+                                    {
+                                        <a href="~/Products/Prolist/?id=@md.id&ids=@m.id">@m.category_l2_name</a>
+                                    }
+                                </dd>
+                            }
+
+                        }
+                        else
+                        {
+                            <dt><a href="~/Products/Prolist/?id=@md.id">@md.category_l1_name</a></dt>
+                        }
+                        i++;
+                    }
+                </dl>
+                <ul class="sub-nav1">
+                    <li><a class="nav1" href="~/AboutUs/AboutUs">關於新和春本草</a></li>
+                    <li><a class="nav2" href="~/AboutUs/AboutUs2" target="_blank">新和春本草的產品製作</a></li>
+                    <li><a href="https://plus.google.com/110990848243401692958" target="_blank">中藥房門市</a></li>
+                    <li><a class="nav4" href="~/AboutUs/AboutUs4">聯絡我們</a></li>
+                </ul>
+
+                <!--a class="buy" href="#">1元競標</a-->
+
+            </div>
+            <!-- sidebar //-->
+            @RenderBody()
+        </div>
+        <!--main //-->
+    </div>
+    <!--container //-->
+
+    <div id="footer">
+
+        <dl>
+            <dt><a href="~/AboutUs/AboutUs">關於新和春本草</a></dt>
+            <dd><a href="~/AboutUs/AboutUs">關於新和春本草的文化</a></dd>
+            <dd><a href="~/AboutUs/AboutUs2">新和春本草的產品製作</a></dd>
+            <dd><a href="~/AboutUs/AboutUs3">新和春本草的信用評價</a></dd>
+            <dd><a href="~/Trust/Trust">企業公民責任</a></dd>
+            <dd><a href="https://plus.google.com/110990848243401692958" target="_blank">中藥房門市</a></dd>
+            <dd><a href="~/AboutUs/AboutUs4">聯絡我們</a></dd>
+        </dl>
+
+        <dl>
+            <dt><a href="http://www.pcstore.com.tw/newspring/" target="_blank">產品系列</a></dt>
+            <dd><a href="~/Month/Month">產後調養 坐月子系列</a></dd>
+            <dd><a href="http://www.pcstore.com.tw/newspring/S860135.htm" target="_blank">沖泡式健康養生茶包</a></dd>
+            <dd><a href="http://www.pcstore.com.tw/newspring/S450091.htm" target="_blank">本草複方膠囊保健食品</a></dd>
+            <dd><a href="http://www.pcstore.com.tw/newspring/S455100.htm" target="_blank">熬煮式健康養生茶飲包</a></dd>
+            <dd><a href="http://www.pcstore.com.tw/newspring/S455104.htm" target="_blank">廚房料理與美味藥膳包</a></dd>
+        </dl>
+
+        <dl>
+            <dt><a href="#">採購方式</a></dt>
+            <dd><a href="~/Custom/Custom">大宗採購客製產品</a></dd>
+            <dd><a href="~/Sell/Sell">全國跨國購物專區</a></dd>
+            <!--dd><a href="#">超級便利購物</a></dd>
+            <dd><a href="#">一元競標</a></dd-->
+        </dl>
+
+        <dl class="store">
+            <dt><a href="#">網路商店</a></dt>
+            <dd class="yahoo"><a href="http://tw.user.bid.yahoo.com/tw/booth/Y1220220920" target="_blank">Yahoo奇摩拍賣</a></dd>
+            <dd class="pchome"><a href="http://www.pcstore.com.tw/newspring/" target="_blank">PChome商店街</a></dd>
+            <dd class="lu"><a href="http://class.ruten.com.tw/user/index00.php?s=mazinger-x" target="_blank">露天拍賣</a></dd>
+            <dd class="club">
+                <a class="fb" href="http://www.facebook.com/newspring.herbs" target="_blank">fb粉絲專頁</a>
+                <a class="twitter" href="https://twitter.com/new_spring_herb" target="_blank">Twitter</a>
+                <a class="google" href="https://plus.google.com/101477489107380924055/posts" target="_blank">Google+</a>
+                <!--a class="weibo" href="#">微博</a-->
+            </dd>
+        </dl>
+
+        <!--cite>要是您想快速方便的購買，請直接進入<a href="#">超級便利購物</a>。</cite-->
+
+        <div class="copyRight">2013 copyright 新和春本草. All Right Reserved.</div>
+
+    </div>
+    <!-- footer //-->
+    <script src="~/Scripts/GoogleAnalytics.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+﻿@model List<ProcCore.Business.Logic.m_News>
+@{
+  Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@section styles {
+	<link rel="stylesheet" href="~/Content/css/page.css">
+}
+
+<ul class="breadCrumb">
+	<li><a href="~/index">首頁</a></li>
+	<li>最新公告</li>
+</ul>
+
+<div id="content">
+
+	<h3>最新公告<span>Lastest News</span></h3>
+    @foreach(var item in Model){
+	<h4><em>@item.SetDate.ToString("yyyy/MM/dd")</em>@item.Title</h4>
+	<div class="info">
+		@Html.Raw(item.Context)
+	</div>
+	}
+	<a class="goTop" href="#header">Top</a>
+
+</div><!-- content //-->

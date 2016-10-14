@@ -1,0 +1,206 @@
+﻿@charset "utf-8";
+
+@import "base/basic.css";
+@import "base/layout.css";
+
+/*-- basic --*/
+h3 {
+	border-bottom:1px solid #535353;
+	color:#626262;
+	font-size:1.2em;
+	font-weight:bold;
+	padding:0 0 5px 8px;
+	margin:0;
+	}
+
+.more {
+	float:right;
+	}
+
+/*-- layout --*/
+#header {
+	height:504px;
+	}
+
+#main {
+	margin:auto; margin-top:28px;
+	padding:0 0 300px 0;
+	margin-top:28px;
+	}
+
+#sidebar {
+ float:right;
+ width:185px;
+ margin:0;
+ }
+
+/*-- header --*/
+h1 {
+	top:29px;
+	}
+#banner {
+	border:1px solid #D2D2D2;
+	height:350px;
+	width:898px;
+	position:relative;
+	top:95px; left:0; 
+	overflow:hidden;
+	visibility:visible;
+	z-index:2;
+	}
+
+#banner img {
+	vertical-align:middle;
+	}
+#menu {
+	border:none;
+	left:-3px; top:460px;
+	height:30px;
+	*width:905px;
+	}
+#menu li {
+	margin:0 0 0 3px;
+	}
+#menu a {
+	background: url('../images/nav2.gif') no-repeat 0 0;
+	border:none;
+	color:#fff;
+	font-size:1.2em;
+	
+	width:178px;
+	padding:13px 0;
+	margin:0;
+ }
+#menu a:hover {
+	background-image: url('../images/nav1.gif');
+	color:#fff;
+	}
+
+/*-- main --*/
+.newPro {
+	float:left;
+	width:238px;
+	}
+
+.news {
+	float:left;
+	width:370px;
+	margin:0 0 0 35px;
+	}
+
+/* 新產品 */
+.newPro ol {
+	margin:5px 0 0 6px;
+	}
+.newPro li {
+	float:left;
+	margin:2px;
+	}
+.newPro ol img {
+	vertical-align: middle;
+	}
+.newPro .more {
+	margin:0 10px 0 0;
+	}
+
+/* 最新消息 */
+.news ul {
+ margin:35px 0 0 8px;
+ }
+.news li {
+ padding:3px 0;
+ }
+.news li a {
+ color:#626262;
+ font-weight:bold;
+ }
+.news li a:hover {
+ color:#6D8500;
+ }
+.news li em {
+ color:#434343;
+ font-size:.9em;
+ margin:3px 12px 0 0;
+ }
+
+/* 右欄內容 */
+.sub-nav1 {
+	padding:20px 0 85px 0;
+	}
+.sub-nav1 li {
+	margin-left:12px;
+	}
+.sub-nav2 { display:none; }
+
+
+/*-- footer --*/
+#footer dl {
+ width:164px;
+ margin-left:35px;
+ }
+#footer .store {
+	width:250px;
+	position:relative;
+	}
+#footer .store dd {
+	width:125px;
+	}
+#footer .store .club {
+	width:85px;
+	margin:0;
+	position:absolute;
+	top:30px; left:165px;
+	}
+#footer .store dd a {
+	display:block;
+	text-indent:-5000px;
+	}
+#footer .yahoo a {
+	background: url('../images/icon_yahoo.gif') no-repeat 0 0;
+	width:125px;
+	height:34px;
+	}
+#footer .pchome a {
+	background: url('../images/icon_pchome.gif') no-repeat 0 0;
+	width:125px;
+	height:32px;
+	}
+#footer .lu a {
+	background: url('../images/icon_lu.gif') no-repeat 0 0;
+	width:47px;
+	height:42px;
+	}
+#footer .club .fb,
+#footer .club .google,
+#footer .club .twitter {
+	background: url('../images/icon_fb.gif') no-repeat 0 0;
+	width:85px;
+	height:20px;
+	}
+#footer .club .google {
+	background-position: 0 -28px;
+	margin-top:10px;
+	}
+#footer .club .twitter {
+	background-image: url('../images/icon_twi.gif');
+	margin-top:10px;
+	}
+#footer .club .weibo { display:none; }
+
+#footer cite {
+	color:#768E00;
+	font-size:.85em;
+	
+	display:block;
+	padding:0 5px;
+	margin:0;
+	
+	clear:both;		
+	text-align:right;
+	}
+#footer cite a {
+	color:#768E00;
+	}
+#footer cite a:hover {
+	text-decoration: underline;
+	}

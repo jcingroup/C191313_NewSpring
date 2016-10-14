@@ -1,0 +1,10 @@
+﻿@charset "utf-8";
+
+@import "base/basic.css";
+
+body {
+	background:#fff;
+	text-align:left;
+	padding:5px;
+	}
+img { max-width:100%; }

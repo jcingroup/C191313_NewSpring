@@ -1,0 +1,55 @@
+﻿@model ProcCore.Business.Logic.q_Product
+@using ProcCore.Business.Logic.TablesDescription
+@using ProcCore.JqueryHelp
+@using ProcCore.JqueryHelp.JQGridScript
+
+@{
+    Product Tab = new Product();
+}
+@section IncludeScript{
+    @Html.Partial("Manage/includeScript_Comm")
+    @Html.Partial("Manage/includeScript_Grid")
+}
+
+@section menu{
+    @Html.Raw(Session["MenuHtmlString"].ToString())
+}
+
+@using (Html.BeginForm(CommWebSetup.acNameMasterDataGridUrl, null, FormMethod.Get, new { ID = CommWebSetup.eleNameSearchForm }))
+{
+    <fieldset>
+        <legend class="@ViewBag.css_Edit_Subtitle_CaptionCss">@Resources.Res.Search</legend>
+        @Html.HiddenFor(x => x.page)
+        @Html.LabelFor(x => x.s_product_name, Html.Lang(x => x.s_product_name))：@Html.TextBoxFor(x => x.s_product_name)
+        @Html.FrameworkButton(CommWebSetup.eleNameSearchButton, Resources.Res.Search, FrameworkIcons.ui_icon_search)
+    </fieldset>
+}
+
+@{
+    //定義Grid需格式化的欄位，以下為ID欄位轉換成Framework ICON並可點選，設定完成代至下到的Html.JQGridHelp中的HelpColumnModule要格式化的欄位並指定給formatterColumn屬性
+    FormatterColumnScript f_col_id = new FormatterColumnScript();
+    f_col_id.FunctionName = CommWebSetup.funNameMasterDataFormatterID;
+    f_col_id.FunctionString = Html.GridIDColumnCommScriptContext(CommWebSetup.MasterGridID, Url.Action(CommWebSetup.acNameEditMasterDataByID));
+}
+@Html.mhs_jqGrid_Standard(
+CommWebSetup.MasterGridID,
+(String)ViewBag.Caption,
+ViewData["Page"].ToString(),
+ViewData["AppendQuertString"].ToString(),
+Url.Action(CommWebSetup.acNameMasterDataGridUrl),
+Url.Action(CommWebSetup.acNameMasterDataDelete),
+Url.Action(CommWebSetup.acNameEditMasterDataAddNew),
+CommWebSetup.MasterGridDefHight, null,
+        new MakeColumnModule() { CN = Resources.Res.ColModify, CM = { name = Tab.id.M, key = true, width = "30px", AssignFormatter = f_col_id } },
+        new MakeColumnModule() { CN = Html.FLang(Tab.product_serial), CM = { name = Tab.product_serial.M, width = "120px" } },
+        new MakeColumnModule() { CN = Html.FLang(Tab.product_name), CM = { name = Tab.product_name.M, width = "220px" } },
+        new MakeColumnModule() { CN = Html.FLang(Tab.product_category_l1_id), CM = { name = Tab.product_category_l1_id.M, width = "180px" } },
+        new MakeColumnModule() { CN = Html.FLang(Tab.is_open), CM = { name = Tab.is_open.M, width = "90px" } }
+)
+
+@Html.AjaxFormSearch(CommWebSetup.eleNameSearchForm, CommWebSetup.MasterGridID, CommWebSetup.eleNameSearchButton, true)
+@Html.OpenDialogPlugin(ViewData["DialogTitle"].ToString(), ViewData["DialogMessage"].ToString())
+<script type="text/javascript">
+    $(document).ready(function () { });
+    (function ($) { })(jQuery);
+</script>
