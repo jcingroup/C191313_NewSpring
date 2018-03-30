@@ -186,3 +186,32 @@ dl.pro dt img {
   }
 #editor {margin-top:20px;}
 #editor img { max-width:100%; }
+
+.lineIcon {
+    width:5%;
+    margin-left:20px;
+}
+
+.lineQR {
+    width: 20%;
+    margin-left: 20px;
+}
+
+.internetLogo {
+    margin-left:35px;
+}
+
+#container #header h1 {
+    margin-top: 20px;
+    left: 330px;
+}
+
+#content .lineName {
+    position: relative;
+}
+
+#content .lineName a{
+    position: absolute;
+    top: -12px;
+    font-size: 16px;
+}

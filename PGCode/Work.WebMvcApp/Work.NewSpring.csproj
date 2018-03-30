@@ -179,6 +179,7 @@
     <Compile Include="Controllers\AboutUsController.cs" />
     <Compile Include="Controllers\CustomController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\InternetShopController.cs" />
     <Compile Include="Controllers\MonthController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -236,6 +237,7 @@
     <Content Include="App_GlobalResources\ResWeb.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>ResWeb1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\css\editor.css" />
     <Content Include="Content\images\AboutUs\icon1.gif" />
@@ -267,10 +269,19 @@
     <Content Include="Content\images\Index\pro4.jpg" />
     <Content Include="Content\images\line.gif" />
     <Content Include="Content\images\logo.gif" />
+    <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\nav1.gif" />
     <Content Include="Content\images\nav2.gif" />
     <Content Include="Content\images\nav_sub1.gif" />
     <Content Include="Content\images\nav_sub2.gif" />
+    <Content Include="Content\images\Index\Products\list1\pro1-2.jpg" />
+    <Content Include="Content\images\Index\Products\list1\pro1.jpg" />
+    <Content Include="Content\images\Index\Products\list1\pro2.jpg" />
+    <Content Include="Content\images\Index\Products\list1\pro3.jpg" />
+    <Content Include="Content\images\Index\Products\list1\pro4.jpg" />
+    <Content Include="Content\images\Index\Products\list1\pro5.jpg" />
+    <Content Include="Content\images\Index\Products\title1.jpg" />
+    <Content Include="Content\images\pager.gif" />
     <Content Include="Content\images\Products\list1\pro1-2.jpg" />
     <Content Include="Content\images\Products\list1\pro1.jpg" />
     <Content Include="Content\images\Products\list1\pro2.jpg" />
@@ -287,7 +298,7 @@
     <Content Include="Areas\Sys_Active\Views\NewsData\ListData.cshtml" />
     <Content Include="Areas\Sys_Active\Views\QATable\EditData.cshtml" />
     <Content Include="Areas\Sys_Active\Views\QATable\ListData.cshtml" />
-    <Content Include="Content\images\Products\list1\Thumbs.db" />
+    <Content Include="Content\images\Index\Products\list1\Thumbs.db" />
     <Content Include="Areas\Sys_Active\Views\ProdData\EditData.cshtml" />
     <Content Include="Areas\Sys_Active\Views\ProdData\ListData.cshtml" />
     <Content Include="Areas\Sys_Active\Views\ProdCate\ListData.cshtml" />
@@ -692,6 +703,7 @@
     <Content Include="_Code\ckeditor_4.1.2_full\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <Content Include="_Code\ckeditor_4.1.2_full\samples\sample_posteddata.php" />
     <Content Include="_Code\ckeditor_4.1.2_full\skins\moono\readme.md" />
+    <Content Include="Views\InternetShop\InternetShop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_GlobalResources\App_Data\" />

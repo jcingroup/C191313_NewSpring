@@ -61,16 +61,15 @@ h1 {
 #menu li {
 	margin:0 0 0 3px;
 	}
-#menu a {
-	background: url('../images/nav2.gif') no-repeat 0 0;
-	border:none;
-	color:#fff;
-	font-size:1.2em;
-	
-	width:178px;
-	padding:13px 0;
-	margin:0;
- }
+    #menu a {
+        background: url('../images/nav2.gif') no-repeat 0 0;
+        border: none;
+        color: #fff;
+        font-size: 1.1em;
+        width: 147px;
+        padding: 13px 0;
+        margin: 0;
+    }
 #menu a:hover {
 	background-image: url('../images/nav1.gif');
 	color:#fff;
@@ -165,18 +164,36 @@ h1 {
 	width:125px;
 	height:32px;
 	}
+#footer .pchomePhone a {
+    background: url('../images/pchomePhone.png') no-repeat 0 0;
+    width: 47px;
+    height: 47px;
+}
+#footer .shopee a {
+    background: url('../images/蝦皮拍賣.png') no-repeat 0 0;
+    width: 125px;
+    height: 32px;
+    background-size: contain;
+}
 #footer .lu a {
-	background: url('../images/icon_lu.gif') no-repeat 0 0;
-	width:47px;
-	height:42px;
-	}
+    background: url('../images/icon_lu.gif') no-repeat 0 0;
+    width: 47px;
+    height: 42px;
+    margin-top: 5px;
+}
+#footer .club .instagram {
+    background: url('../images/instagram.png') no-repeat 0 0;
+    width: 85px;
+    height: 20px;
+    margin-top: 8px;
+}
 #footer .club .fb,
 #footer .club .google,
 #footer .club .twitter {
-	background: url('../images/icon_fb.gif') no-repeat 0 0;
-	width:85px;
-	height:20px;
-	}
+    background: url('../images/icon_fb.gif') no-repeat 0 0;
+    width: 85px;
+    height: 20px;
+}
 #footer .club .google {
 	background-position: 0 -28px;
 	margin-top:10px;
@@ -204,3 +221,8 @@ h1 {
 #footer cite a:hover {
 	text-decoration: underline;
 	}
+
+.newImg {
+    width: 108px;
+    height: 85px;
+}
