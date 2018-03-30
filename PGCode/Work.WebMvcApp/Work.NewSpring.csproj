@@ -267,7 +267,11 @@
     <Content Include="Content\images\Index\pro2.jpg" />
     <Content Include="Content\images\Index\pro3.jpg" />
     <Content Include="Content\images\Index\pro4.jpg" />
+    <Content Include="Content\images\instagram.png" />
+    <Content Include="Content\images\instagram_icon.png" />
     <Content Include="Content\images\line.gif" />
+    <Content Include="Content\images\line.png" />
+    <Content Include="Content\images\lineQR.png" />
     <Content Include="Content\images\logo.gif" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\nav1.gif" />
@@ -282,6 +286,7 @@
     <Content Include="Content\images\Index\Products\list1\pro5.jpg" />
     <Content Include="Content\images\Index\Products\title1.jpg" />
     <Content Include="Content\images\pager.gif" />
+    <Content Include="Content\images\pchomePhone.png" />
     <Content Include="Content\images\Products\list1\pro1-2.jpg" />
     <Content Include="Content\images\Products\list1\pro1.jpg" />
     <Content Include="Content\images\Products\list1\pro2.jpg" />
@@ -290,6 +295,7 @@
     <Content Include="Content\images\Products\list1\pro5.jpg" />
     <Content Include="Content\images\Products\title1.jpg" />
     <Content Include="Content\images\sidebarBg.gif" />
+    <Content Include="Content\images\蝦皮拍賣.png" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Sys_Active\Views\PageContext\EditData.cshtml" />
     <Content Include="Areas\Sys_Active\Views\PageContext\ListData.cshtml" />
