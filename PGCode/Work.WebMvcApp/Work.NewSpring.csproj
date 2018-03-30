@@ -264,15 +264,14 @@
     <Content Include="Content\images\Index\banner2.jpg" />
     <Content Include="Content\images\Index\banner3.jpg" />
     <Content Include="Content\images\Index\pro1.jpg" />
-    <Content Include="Content\images\Index\pro2.jpg" />
-    <Content Include="Content\images\Index\pro3.jpg" />
+    <Content Include="Content\images\Index\pro2.png" />
+    <Content Include="Content\images\Index\pro3.png" />
     <Content Include="Content\images\Index\pro4.jpg" />
     <Content Include="Content\images\instagram.png" />
     <Content Include="Content\images\instagram_icon.png" />
     <Content Include="Content\images\line.gif" />
     <Content Include="Content\images\line.png" />
     <Content Include="Content\images\lineQR.png" />
-    <Content Include="Content\images\logo.gif" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\nav1.gif" />
     <Content Include="Content\images\nav2.gif" />
