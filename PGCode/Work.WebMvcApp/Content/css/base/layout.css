@@ -58,7 +58,8 @@ h1 {
 	cursor:pointer;
 	text-indent:-9999px;
 	position:absolute;
-	margin-top:-10px; left:350px;
+	margin-top:-10px; left:50%;
+    margin-left: -125px;
 	width:250px; height:60px;
 	z-index:20;
     background-size: cover;
