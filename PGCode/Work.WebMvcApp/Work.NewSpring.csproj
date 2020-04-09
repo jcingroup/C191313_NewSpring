@@ -285,6 +285,7 @@
     <Content Include="Content\images\Index\Products\list1\pro4.jpg" />
     <Content Include="Content\images\Index\Products\list1\pro5.jpg" />
     <Content Include="Content\images\Index\Products\title1.jpg" />
+    <Content Include="Content\images\newspringshop.png" />
     <Content Include="Content\images\pager.gif" />
     <Content Include="Content\images\pchomePhone.jpg" />
     <Content Include="Content\images\Products\list1\pro1-2.jpg" />
@@ -294,8 +295,8 @@
     <Content Include="Content\images\Products\list1\pro4.jpg" />
     <Content Include="Content\images\Products\list1\pro5.jpg" />
     <Content Include="Content\images\Products\title1.jpg" />
+    <Content Include="Content\images\shopee.png" />
     <Content Include="Content\images\sidebarBg.gif" />
-    <Content Include="Content\images\蝦皮拍賣.png" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Sys_Active\Views\PageContext\EditData.cshtml" />
     <Content Include="Areas\Sys_Active\Views\PageContext\ListData.cshtml" />
